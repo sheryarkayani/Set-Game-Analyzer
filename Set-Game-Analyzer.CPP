@@ -7,6 +7,7 @@ class Card {
 protected:
     string color;
     string shape;
+    string Shading;
     int number;
 
 public:
@@ -14,11 +15,13 @@ public:
     string getColor() { return color; }
     string getShape() { return shape; }
     int getNumber() { return number; }
+    string getShading() { return Shading; }
 
     //setters
     void setColor(string color) { this->color = color; }
     void setShape(string shape) { this->shape = shape; }
     void setNumber(int number) { this->number = number; }
+    void setShading(string shading) { this->Shading = shading; }
 };
 
 bool checkCards(Card& c1, Card& c2, Card& c3)
@@ -26,6 +29,7 @@ bool checkCards(Card& c1, Card& c2, Card& c3)
     bool colorCheck = false;
     bool shapeCheck = false;
     bool numberCheck = false;
+    bool shadingCheck = false;
     bool result = false;
 
     //for color
@@ -58,8 +62,18 @@ bool checkCards(Card& c1, Card& c2, Card& c3)
         numberCheck = true;
     }
 
+     //for shading
+    if ((c1.getShading()!= c2.getShading()) && (c2.getShading() != c3.getShading()) && (c1.getShading() != c3.getShading()))
+    {
+        shadingCheck = true;
+    }
+    if ((c1.getShading() == c2.getShading()) && (c2.getShading() == c3.getShading()) && (c1.getShading() == c3.getShading()))
+    {
+        shadingCheck = true;
+    }
+
     //returning result
-    if ((numberCheck == true) && (shapeCheck == true) && (colorCheck == true))
+    if ((numberCheck == true) && (shapeCheck == true) && (colorCheck == true) && (shadingCheck == true))
     {
         result = true;
     }
@@ -72,6 +86,7 @@ int main()
     string color;
     string shape;
     int number;
+    string Shading;
     Card c1, c2, c3; //three object cards
 
     //taking input from user for card
@@ -116,6 +131,20 @@ int main()
     cout << "Enter number for 3rd card" << endl;
     cin >> number;
     c3.setNumber(number); //setting number to 3rd card
+
+     //for shading
+    cout << "Enter shading for card" << endl;
+    cout << "Enter shading for 1st card" << endl;
+    cin >> Shading;
+    c1.setShading(Shading); //setting number to 1st card
+
+    cout << "Enter shading for 2nd card" << endl;
+    cin >> Shading;
+    c2.setShading(Shading); //setting number to 2nd card
+
+    cout << "Enter number for 3rd card" << endl;
+    cin >> Shading;
+    c3.setShading(Shading); //setting number to 3rd card
 
     bool result = checkCards(c1, c2, c3);
 
